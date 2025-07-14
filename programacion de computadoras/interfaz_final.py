@@ -11,14 +11,12 @@ HISTORIAL_COMPRAS_FILE = "historial_compras.json" #historial de compras
 
 usuario_actual = None
 
-# Rutas de imagenes absolutas
-# IMPORTANTE: Asegúrate de que esta ruta sea ABSOLUTA y correcta en tu sistema.
+# Rutas de imagenes 
 # Si no estás seguro, puedes usar:
-# IMG_BASE = os.path.dirname(os.path.abspath(__file__))
 # Y colocar las imágenes en la misma carpeta que este script.
 IMG_BASE = "C:\\Users\\kevin\\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras"
 
-# --- Funciones de Utilidad para Archivos JSON ---
+#Funciones de archivos json 
 
 def cargar_json(filepath):
     """Carga datos desde un archivo JSON. Retorna una lista vacía si hay error o no existe."""
@@ -50,7 +48,6 @@ def load_icon(path):
         image = image.resize((30, 30), Image.LANCZOS)
         return ImageTk.PhotoImage(image)
     except Exception as e:
-        # print(f"Error loading icon {path}: {e}") # Descomentar para depurar
         return None
 
 def load_image(path, size=(80, 80)):
@@ -59,10 +56,8 @@ def load_image(path, size=(80, 80)):
         image = image.resize(size, Image.LANCZOS)
         return ImageTk.PhotoImage(image)
     except Exception as e:
-        # print(f"Error loading image {path}: {e}") # Descomentar para depurar
         return None
 
-# Inicialización de productos con stock
 productos_disponibles = [
     {"nombre": "comida para gatos", "precio": "15000", "imagen": os.path.join(IMG_BASE, "ringogato.png"), "stock": 10},
     {"nombre": "comida para perro", "precio": "25000", "imagen": os.path.join(IMG_BASE, "perro.png"), "stock": 15},
@@ -70,7 +65,6 @@ productos_disponibles = [
     {"nombre": "comida para cachorros", "precio": "20000", "imagen": os.path.join(IMG_BASE, "perros_pequeños.png"), "stock": 12},
 ]
 
-#
 
 def iniciar_autenticacion():
     def login():
@@ -93,13 +87,13 @@ def iniciar_autenticacion():
         if not user or not password:
             messagebox.showerror("Error", "Completa todos los campos")
             return
-        datos = cargar_json(ARCHIVO_DATOS) # Usar cargar_json
+        datos = cargar_json(ARCHIVO_DATOS) 
         for u in datos:
             if u["user"] == user:
                 messagebox.showerror("Error", "Usuario ya existe")
                 return
         datos.append({"user": user, "pass": password, "foto": ""})
-        guardar_json(datos, ARCHIVO_DATOS) # Usar guardar_json
+        guardar_json(datos, ARCHIVO_DATOS) 
         messagebox.showinfo("Éxito", "Usuario registrado")
         frame_reg.pack_forget()
         frame_login.pack()
@@ -188,7 +182,7 @@ def abrir_tienda():
             img = load_image(prod["imagen"])
             if img:
                 tk.Label(f, image=img, bg="white").pack(side="left")
-                f.image = img # Keep a reference!
+                f.image = img 
             
             info = tk.Frame(f, bg="white")
             info.pack(side="left", padx=10, expand=True, fill="x")
@@ -244,7 +238,7 @@ def abrir_tienda():
         tk.Label(frame, text="Perfil de Usuario", font=("Arial", 16, "bold"), bg="white", fg="#195E5E").pack(pady=10)
         
         path = usuario_actual.get("foto", "")
-        img = load_image(path, size=(120, 120)) # Tamaño un poco más grande
+        img = load_image(path, size=(120, 120)) 
         if img:
             lbl = tk.Label(frame, image=img, bg="white")
             lbl.image = img
@@ -345,7 +339,7 @@ def abrir_tienda():
         if carrito:
             tk.Button(frame, text="Pagar", command=lambda: pagar_con_opciones(total), bg="#B7CE63").pack(pady=10)
     
-    # MODIFICACIÓN CLAVE: Función pagar_con_opciones
+
     def pagar_con_opciones(total_a_pagar):
         if not carrito:
             messagebox.showerror("Error", "El carrito está vacío. Agrega productos para pagar.")
@@ -354,8 +348,8 @@ def abrir_tienda():
         pago_window = tk.Toplevel(root)
         pago_window.title("Confirmar Pago")
         pago_window.geometry("350x400")
-        pago_window.transient(root) # Hace que la ventana de pago esté encima de la principal
-        pago_window.grab_set() # Bloquea la interacción con la ventana principal
+        pago_window.transient(root) 
+        pago_window.grab_set() 
 
         pago_frame = tk.Frame(pago_window, bg="white", padx=20, pady=20)
         pago_frame.pack(fill="both", expand=True)
@@ -365,7 +359,7 @@ def abrir_tienda():
 
         metodo_pago_var = tk.StringVar(value="Efectivo")
 
-        card_details_frame = tk.Frame(pago_frame, bg="white") # Frame para campos de tarjeta
+        card_details_frame = tk.Frame(pago_frame, bg="white")
 
         def mostrar_campos_tarjeta():
             for widget in card_details_frame.winfo_children():
@@ -388,7 +382,7 @@ def abrir_tienda():
         tk.Radiobutton(pago_frame, text="Tarjeta Visa", variable=metodo_pago_var, value="Tarjeta Visa", bg="white", command=mostrar_campos_tarjeta).pack(anchor="w", pady=5)
         tk.Radiobutton(pago_frame, text="Mastercard", variable=metodo_pago_var, value="Mastercard", bg="white", command=mostrar_campos_tarjeta).pack(anchor="w", pady=5)
         
-        # Mostrar campos de tarjeta al inicio si es necesario (cuando se selecciona una tarjeta por defecto)
+        # Mostrar campos de tarjeta al inicio
         mostrar_campos_tarjeta()
 
         def finalizar_pago():
@@ -400,10 +394,7 @@ def abrir_tienda():
                 expiry = ""
                 cvv = ""
                 
-                # Acceder a los entries creados en mostrar_campos_tarjeta
-                # Esto es un poco hacky porque las variables locales de mostrar_campos_tarjeta no son accesibles directamente
-                # Una mejor práctica sería hacer los entries variables de instancia o de un ámbito superior.
-                # Para mantener la simplicidad y el estilo del código original, buscaré los widgets por su tipo y contenido.
+            
                 entries = [w for w in card_details_frame.winfo_children() if isinstance(w, tk.Entry)]
                 if len(entries) == 3:
                     card_num = entries[0].get()
@@ -423,10 +414,10 @@ def abrir_tienda():
                     messagebox.showerror("Error de Pago", "CVV inválido.")
                     return
             
-            # --- Registrar la compra en el historial ---
+            #Registrar la compra en el historial
             historial = cargar_json(HISTORIAL_COMPRAS_FILE)
             
-            # Agrupar productos para el historial de compra
+            #Agrupar productos para el historial de compra
             items_comprados_historial = defaultdict(lambda: {"precio_unitario": 0, "cantidad": 0})
             for item_c in carrito:
                 items_comprados_historial[item_c["nombre"]]["precio_unitario"] = int(item_c["precio"])
@@ -468,14 +459,14 @@ def abrir_tienda():
                 break
         
         if found_product and found_product["stock"] > 0:
-            found_product["stock"] -= 1 # Decrementar stock
+            found_product["stock"] -= 1 # disminuir stock
             carrito.append(found_product) # Añadir referencia al carrito
             messagebox.showinfo("Carrito", f"'{prod_to_add['nombre']}' agregado al carrito.")
             go_inicio() # Refrescar la vista para mostrar el stock actualizado
         elif found_product and found_product["stock"] <= 0:
             messagebox.showerror("Sin Stock", f"Lo sentimos, '{prod_to_add['nombre']}' está agotado.")
         else:
-            messagebox.showerror("Error", "Producto no encontrado en la base de datos.") # Debería ser raro
+            messagebox.showerror("Error", "Producto no encontrado en la base de datos.") 
 
     def go_admin():
         limpiar()
@@ -576,12 +567,7 @@ def abrir_tienda():
     root.mainloop()
 
 if __name__ == "__main__":
-    # Opcional: Crear el directorio de imágenes si no existe
-    # if not os.path.exists(IMG_BASE):
-    #     os.makedirs(IMG_BASE)
-    #     messagebox.showwarning("Advertencia", f"Se ha creado el directorio de imágenes en:\n{IMG_BASE}\nPor favor, coloca tus imágenes de producto allí.")
     
-    # Asegurarse de que el archivo de historial de compras existe o crearlo vacío al inicio
     if not os.path.exists(HISTORIAL_COMPRAS_FILE):
         guardar_json([], HISTORIAL_COMPRAS_FILE)
 
