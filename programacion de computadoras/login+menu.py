@@ -100,14 +100,14 @@ def iniciar_autenticacion():
 
     # logo de autenticacion
     try:
-        image = Image.open("unnamed.png")
+        image = Image.open("C:Users\\kevin\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\unnamed.png")
         image = image.resize((100, 100), Image.LANCZOS)
         logo = ImageTk.PhotoImage(image)
         logo_label = tk.Label(root_auth, image=logo, bg="#195E5E")
         logo_label.image = logo # mantener una referencia para evitar que el recolector de basura la elimine
         logo_label.pack(pady=10)
     except Exception as e:
-        print(f"error al cargar el logo 'unnamed.png': {e}")
+        print(f"': {e}")
 
     # frame de login
     frame_login = tk.Frame(root_auth, bg="#195E5E")
@@ -184,17 +184,17 @@ def abrir_tienda():
                 print(f"error al cargar imagen por defecto: {e_default}")
                 return None # no se pudo cargar ni la imagen original ni la por defecto
 
-    icon_inicio = load_icon("inicio.png")
-    icon_categorias = load_icon("lupa.png")
-    icon_tu = load_icon("usuario.png")
-    icon_carrito = load_icon("carrito.png")
+    icon_inicio = load_icon("C:\\Users\\kevin\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\inicio.png.")
+    icon_categorias = load_icon("C:\\Users\kevin\\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\lupa.png.")
+    icon_tu = load_icon("C:\\Users\kevin\\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\usuario.png.")
+    icon_carrito = load_icon("C:\\Users\\kevin\OneDrive\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\carrito.png")
 
     # datos de productos (se inicializan cada vez que se abre la tienda)
     productos_disponibles = [
-        {"nombre": "comida para gatos", "precio": "15000", "imagen": "ringogato.png"},
-        {"nombre": "comida para perro", "precio": "25000", "imagen": "perro.png"},
-        {"nombre": "comida para gatos pequenos", "precio": "10000", "imagen": "gato_pequeño.png"},
-        {"nombre": "comida para cachorros", "precio": "20000", "imagen": "C:\\Users\\Janus\Documents\\programacion de computadoras\\programacion de computadoras\\perros_pequeños.png"},
+        {"nombre": "comida para gatos", "precio": "15000", "imagen": "C:\\Users\\kevin\\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\ringogato.png"},
+        {"nombre": "comida para perro", "precio": "25000", "imagen": "C:\\Users\\kevin\\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\perro.png"},
+        {"nombre": "comida para gatos pequenos", "precio": "10000", "imagen": "C:\\Users\\kevin\\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\gato_pequeño.png"},
+        {"nombre": "comida para cachorros", "precio": "20000", "imagen": "C:\\Users\\kevin\\OneDrive\\Documentos\\proyectos de programacion\\Nueva-carpeta\\interfaz graf 2\\infratriz_grafica\\programacion de computadoras\\perros_pequeños.png"},
     ]
 
     carrito = [] # el carrito se reinicia cada vez que se abre la tienda, lo cual es normal si no se persiste.
