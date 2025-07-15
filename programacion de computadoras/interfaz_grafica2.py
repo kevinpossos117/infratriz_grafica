@@ -241,17 +241,14 @@ def abrir_tienda():
 
         def on_frame_configure(event):
             product_canvas.configure(scrollregion=product_canvas.bbox("all"))
-            # Asegura que el frame interno siempre ocupe el ancho del canvas
-            product_canvas.itemconfig(product_canvas.create_window((0, 0), window=scrollable_product_frame, anchor="nw"), width=product_canvas.winfo_width())
 
         scrollable_product_frame.bind("<Configure>", on_frame_configure)
-        product_canvas.bind("<Configure>", on_frame_configure) # Para ajustar el ancho del frame interno cuando el canvas cambia de tamaño
 
 
         # Mostramos cada producto.
         for prod in productos_disponibles:
             f = tk.Frame(scrollable_product_frame, bg="white", relief="solid", bd=1, padx=5, pady=5)
-            f.pack(padx=5, pady=5, fill="x") # Asegúrate de que el frame del producto se expanda.
+            f.pack(padx=5, pady=5, fill="x")
 
             img = load_image(prod["imagen"]) # Usa la función load_image que ahora busca en IMG_PRODUCTOS_DIR
             if img:
@@ -292,14 +289,7 @@ def abrir_tienda():
 
         results_frame = tk.Frame(results_canvas, bg="white")
         results_canvas.create_window((0, 0), window=results_frame, anchor="nw")
-
-        def on_results_frame_configure(event):
-            results_canvas.configure(scrollregion = results_canvas.bbox("all"))
-            # Asegura que el frame interno siempre ocupe el ancho del canvas
-            results_canvas.itemconfig(results_canvas.create_window((0, 0), window=results_frame, anchor="nw"), width=results_canvas.winfo_width())
-
-        results_frame.bind("<Configure>", on_results_frame_configure)
-        results_canvas.bind("<Configure>", on_results_frame_configure)
+        results_frame.bind("<Configure>", lambda e: results_canvas.configure(scrollregion = results_canvas.bbox("all")))
 
 
         def buscar():
@@ -847,7 +837,7 @@ def abrir_tienda():
     tk.Button(nav, image=icon_buscar, text="Buscar", compound="top", command=go_buscar, bg="white", fg="black").pack(side="left", expand=True)
     tk.Button(nav, image=icon_usuario, text="Mi Perfil", compound="top", command=go_usuario, bg="white", fg="black").pack(side="left", expand=True)
     tk.Button(nav, image=icon_carrito, text="Carrito", compound="top", command=go_carrito, bg="white", fg="black").pack(side="left", expand=True)
-    tk.Button(nav, image=icon_admin, text="Admin", compound="top", command=go_admin, bg="white", fg="black").pack(side="left", expand=True)
+    tk.Button(nav, image=icon_admin, text="Admin", compound="top", command=go_admin, bg="white", fg="black").pack(side="left", expand=True) # Usamos icon_admin
 
     go_inicio()
     root_tienda_app.mainloop()
