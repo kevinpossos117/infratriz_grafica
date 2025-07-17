@@ -1,7 +1,8 @@
 # infratriz_grafica
 # Aplicación de Venta de Purinas - Versión Escritorio
 
-Este proyecto consiste en una aplicación de escritorio desarrollada en Python utilizando la biblioteca Tkinter. Su objetivo es permitir a los usuarios gestionar la compra y venta de productos de purinas de forma sencilla y rápida.
+Este proyecto consiste en una aplicación de escritorio desarrollada en Python utilizando la biblioteca Tkinter.
+Su objetivo es permitir a los usuarios gestionar la compra y venta de productos de purinas de forma sencilla y rápida.
 
 ## Características principales
 
@@ -24,14 +25,14 @@ Este proyecto consiste en una aplicación de escritorio desarrollada en Python u
 
 ## Estructura del proyecto
 
-proyecto/
-│
-├── main.py # Archivo principal de ejecución
-├── data.json # Base de datos de usuarios
-├── historial_compras.json# Registro de compras realizadas
-├── productos.json # Inventario de productos
-├── /imagenes # Carpeta de imágenes
-└── README.md 
+proyecto
+
+- main.py # Archivo principal de ejecució
+- data.json # Base de datos de usuarios
+- historial_compras.json# Registro de compras realizadas
+- productos.json # Inventario de productos
+- imagenes # Carpeta de imágenes
+- README.md 
 
 # Autores
 
