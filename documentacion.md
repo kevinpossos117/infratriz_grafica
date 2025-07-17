@@ -17,7 +17,6 @@ Para ejecutar correctamente la aplicación, es necesario tener instalado lo sigu
   - datetime (incluida con Python)
   - json (incluida con Python)
 
----
 
 # 3. Instalación
 
@@ -34,7 +33,6 @@ proyecto
 
 3. Abrir una terminal en la carpeta del proyecto y ejecutar:
 
-```bash
 python main.py
 
 4. Instrucciones de uso
@@ -57,7 +55,7 @@ Historial de compras
 
 5. Estructura de datos
 Estructura de data.json
-
+```bash
 [
   {
     "usuario": "kevin",
@@ -65,7 +63,7 @@ Estructura de data.json
     "clave": "1234"
   }
 ]
-
+---
 Estructura de productos.json
 
 [
