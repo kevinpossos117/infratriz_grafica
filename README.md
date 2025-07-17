@@ -38,6 +38,7 @@ proyecto
 
 Kevin Possos  
 kevin garcia 
+
 Universidad Nacional de Colombia  
 
 Este proyecto fue desarrollado como parte del aprendizaje en programación, con el fin de aplicar conceptos de interfaces gráficas, manejo de archivos y organización de código en Python.
